@@ -1,0 +1,12 @@
+beautifulsoup4==4.12.3
+requests==2.31.0
+pypdf==4.2.0
+langchain
+langchain-community
+langchain-google-genai
+sentence-transformers
+chromadb
+faiss-cpu
+google-generativeai
+python-dotenv==1.0.1
+tqdm==4.66.4
