@@ -28,55 +28,52 @@ TOP_K_RESULTS = 5 # Number of relevant chunks to retrieve
 # Cache the embedding function resource across sessions
 @st.cache_resource
 def get_embedding_function():
-    st.write(f"Loading embedding function ({EMBEDDING_MODEL_NAME})...") # Use st.write for visibility in app
+    print(f"Loading embedding function ({EMBEDDING_MODEL_NAME})...") # Use st.write for visibility in app
     start_time = time.time()
     # Ignore deprecation warnings for now, adjust imports later if needed
     # e.g., from langchain_huggingface import HuggingFaceEmbeddings
     try:
          embedding_function = SentenceTransformerEmbeddings(model_name=EMBEDDING_MODEL_NAME)
          end_time = time.time()
-         st.write(f"Embedding function loaded in {end_time - start_time:.2f} seconds.")
+         print(f"Embedding function loaded in {end_time - start_time:.2f} seconds.")
          return embedding_function
     except Exception as e:
-         st.error(f"Failed to load embedding function: {e}")
+         st.error(f"🔴 Internal Error. Please wait while we resolve this issue: {e}")
          return None
 
 # Cache the LLM resource across sessions
 @st.cache_resource
 def load_llm():
-    st.write(f"Loading LLM ({LLM_MODEL_NAME})...")
+    print(f"Loading LLM ({LLM_MODEL_NAME})...")
     start_time = time.time()
     # Load API key from .env file OR Streamlit secrets
     load_dotenv()
     api_key = os.getenv("GOOGLE_API_KEY") # Checks .env locally, checks secrets when deployed
 
     if not api_key:
-        st.error("🔴 GOOGLE_API_KEY not found! Set it in .env file locally, or in Streamlit Secrets when deployed.")
+        st.error("🔴 API ERROR: Please wait while we resolve this issue.")
         return None
     try:
         # Configure GenAI (important step)
         genai.configure(api_key=api_key)
         llm = ChatGoogleGenerativeAI(model=LLM_MODEL_NAME, temperature=0.2)
         end_time = time.time()
-        st.write(f"LLM loaded in {end_time - start_time:.2f} seconds.")
+        print(f"LLM loaded in {end_time - start_time:.2f} seconds.")
         return llm
     except Exception as e:
-        st.error(f"🔴 Failed to initialize LLM: {e}")
-        st.error("Ensure your API key is correct and has the Generative Language API enabled.")
+        st.error(f"🔴 Internal Error. Please wait while we resolve this issue: {e}")
         return None
 
 # Cache the vector store resource across sessions
 @st.cache_resource
 def load_vector_store(_embedding_func): # Pass embedding func as argument
-     st.write(f"Loading vector store from '{CHROMA_DB_PATH}'...")
+     print(f"Loading vector store from '{CHROMA_DB_PATH}'...")
      start_time = time.time()
      if not os.path.exists(CHROMA_DB_PATH) or not os.listdir(CHROMA_DB_PATH):
-          st.error(f"🔴 Chroma DB not found at '{CHROMA_DB_PATH}'.")
-          st.error("Please ensure the 'chroma_db' folder exists and contains data.")
-          st.error("Run the initial scraping and indexing script if needed.")
+          st.error(f"🔴 Internal Error. Please wait while we resolve this issue: {e}")
           return None
      if _embedding_func is None:
-          st.error("🔴 Cannot load vector store without a valid embedding function.")
+          st.error("🔴 Internal Error. Please wait while we resolve this issue: {e}")
           return None
      try:
         # Ignore deprecation warnings for now, adjust imports later if needed
@@ -86,10 +83,10 @@ def load_vector_store(_embedding_func): # Pass embedding func as argument
             embedding_function=_embedding_func # Use the passed function
         )
         end_time = time.time()
-        st.write(f"Vector store loaded in {end_time - start_time:.2f} seconds.")
+        print(f"Vector store loaded in {end_time - start_time:.2f} seconds.")
         return vector_store
      except Exception as e:
-          st.error(f"🔴 Failed to load vector store: {e}")
+          st.error(f"🔴 Internal Error. Please wait while we resolve this issue: {e}")
           return None
 
 # --- Main App Logic ---
