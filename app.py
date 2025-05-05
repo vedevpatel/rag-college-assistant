@@ -1,3 +1,7 @@
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import streamlit as st
 import os
 from dotenv import load_dotenv
@@ -91,8 +95,8 @@ def load_vector_store(_embedding_func): # Pass embedding func as argument
 # --- Main App Logic ---
 
 st.set_page_config(layout="wide") # Use wider layout
-st.title(" Las Positas College Q&A Bot")
-st.caption("Ask questions about LPC based on information scraped from its website.")
+st.title("🦅The LPC Hawk Bot🦅")
+st.caption("Ask questions about LPC based on information from its website.")
 st.divider()
 
 # --- Load resources early and show status ---
