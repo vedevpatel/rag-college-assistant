@@ -68,8 +68,8 @@ hawkbot.streamlit.app
 ## ⚙️ Configuration
 
 * **Google API Key:** A `GOOGLE_API_KEY` with the Generative Language API enabled is required. Provide this via a `.env` file locally or as a Secret (named `GOOGLE_API_KEY`) during deployment (e.g., on Streamlit Community Cloud).
-* **(If Feedback Feature Added):** Email credentials (`EMAIL_USER`, `EMAIL_PASS`) may be needed as environment variables/secrets if the email feedback feature is implemented.
 
+  
 ## 📧 Feedback and Bug Reports
 
 Found an issue or have suggestions? Please feel free to reach out directly via email at: `vedevpatel@gmail.com`
