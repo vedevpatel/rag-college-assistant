@@ -2,8 +2,8 @@
 
 A question-answering assistant for Las Positas College (LPC) using Retrieval-Augmented Generation (RAG) based on information from the official LPC website.
 
-**➡️ [Try the Live App Here!](YOUR_DEPLOYED_APP_URL_HERE) ⬅️**
-hawkbot.streamlit.app
+**➡️ [Try the Live App Here!](hawkbot.streamlit.app) ⬅️**
+
 
 ## Preview
 
