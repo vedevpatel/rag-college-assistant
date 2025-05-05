@@ -95,7 +95,7 @@ def load_vector_store(_embedding_func): # Pass embedding func as argument
 # --- Main App Logic ---
 
 st.set_page_config(layout="wide") # Use wider layout
-st.title("🦅The LPC Hawk Bot🦅")
+st.title("The LPC Hawk Bot🦅")
 st.caption("Ask questions about LPC based on information from its website.")
 st.divider()
 
