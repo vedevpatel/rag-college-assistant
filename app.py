@@ -174,4 +174,4 @@ else:
 
 # Add a footer or sidebar info if desired
 st.sidebar.header("About")
-st.sidebar.info("This chatbot uses information scraped from the Las Positas College website. Its knowledge is limited to the college website.")
+st.sidebar.info("This chatbot uses publicly available information from the Las Positas College website. Enjoy!")
